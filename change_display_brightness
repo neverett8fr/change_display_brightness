@@ -1,0 +1,13 @@
+displayString=$(xrandr | grep " connected " | awk '{ print$1 }')
+IFS=$'\n' read -rd '' -a displayArray <<< ${displayString[*]}
+
+displayString=$(zenity\
+    --forms\
+    --separator=","\
+    --add-combo="Select Display"\
+    --combo-values="${displayArray[0]}|${displayArray[1]}"\
+    --add-entry="Value")
+    
+IFS=$',' read -rd '' -a displayArray <<< ${displayString[*]}
+
+xrandr --output ${displayArray[0]} --brightness ${displayArray[1]}
