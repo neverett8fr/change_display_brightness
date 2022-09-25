@@ -9,5 +9,8 @@ displayString=$(zenity\
     --add-entry="Value")
     
 IFS=$',' read -rd '' -a displayArray <<< ${displayString[*]}
+display=${displayArray[0]}
+value=${displayArray[1]}
+x=100
 
-xrandr --output ${displayArray[0]} --brightness ${displayArray[1]}
+xrandr --output ${displayArray[0]} --brightness $(printf "%f\n" $((10**6 * value/x))e-6)
