@@ -13,11 +13,11 @@ display=${displayArray[0]}
 value=${displayArray[1]}
 x=100
 
-if [ "$value" \< 10 ]
+if [ $value \< 10 ]
 then
     value=10
 fi;
-if [ "$value" \> 250 ]
+if [ $value -gt 250 ]
 then
     value=250
 fi;
